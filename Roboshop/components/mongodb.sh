@@ -30,8 +30,9 @@ cd /tmp
 
 echo "Unzipping mongodb schema archive"
 unzippp mongodb.zip &>>/tmp/roboshoplog
-cd mongodb-main
 status_check $?
+
+cd mongodb-main
 
 echo "Loading mongodb schema"
 mongo < catalogue.js &>>/tmp/roboshoplog
