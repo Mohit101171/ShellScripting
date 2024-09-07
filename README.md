@@ -1,2 +1,2 @@
 # ShellScripting
-####Lets get Started woith Shell Scripting####
+####Lets get Started with Shell Scripting####
