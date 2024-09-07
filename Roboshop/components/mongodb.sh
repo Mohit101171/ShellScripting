@@ -11,7 +11,7 @@ echo "Installing Mongodb"
 yum install -y mongodb-org &>>/tmp/roboshoplog
 
 echo "Congifuring mongodb config file to have ip 0.0.0.0"
-sed -i -e 's/127.0.0.1/0.0.0.0' /etc/mongod.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 
 echo "Enabling and starting mongodb service"
 systemctl enable mongod
