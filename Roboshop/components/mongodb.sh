@@ -29,7 +29,7 @@ status_check $?
 cd /tmp
 
 echo "Unzipping mongodb schema archive"
-unzip mongodb.zip &>>/tmp/roboshoplog
+unzippp mongodb.zip &>>/tmp/roboshoplog
 cd mongodb-main
 status_check $?
 
