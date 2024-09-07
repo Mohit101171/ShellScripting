@@ -23,7 +23,7 @@ systemctl restart mongod
 status_check $?
 
 echo "Donwloading Mongodb schema" 
-curlll -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/roboshoplog
+curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/roboshoplog
 status_check $?
 
 cd /tmp
