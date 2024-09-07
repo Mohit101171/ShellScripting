@@ -12,8 +12,6 @@ status_check $?
 
 echo "Installing Mongodb"
 yum install -y mongodb-org &>>/tmp/roboshoplog
-status_check $?
-    
 
 echo "Congifuring mongodb config file to have ip 0.0.0.0"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
