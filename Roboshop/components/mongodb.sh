@@ -1,5 +1,5 @@
 #!bin/bash
-source:components/common.sh
+source components/common.sh
 
 echo "Setting up mongodb repo"
 echo '[mongodb-org-4.2]
