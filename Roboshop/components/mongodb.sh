@@ -18,24 +18,24 @@ print "Congifuring mongodb config file to have ip 0.0.0.0"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 status_check $?
 
-print "Enabling and starting mongodb service"
+print "Enabling and starting mongodb service\t\t"
 systemctl enable mongod
 systemctl restart mongod
 status_check $?
 
-print "Donwloading Mongodb schema" 
+print "Donwloading Mongodb schema\t\t\t\t" 
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/roboshoplog
 status_check $?
 
 cd /tmp
 
-print "Unzipping mongodb schema archive"
+print "Unzipping mongodb schema archive\t\t"
 unzip -o mongodb.zip &>>/tmp/roboshoplog
 status_check $?
 
 cd mongodb-main
 
-print "Loading mongodb schema"
+print "Loading mongodb schema\t\t\t\t"
 mongo < catalogue.js &>>/tmp/roboshoplog
 mongo < users.js &>>/tmp/roboshoplog
 status_check $?
