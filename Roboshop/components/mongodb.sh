@@ -1,7 +1,7 @@
 #!bin/bash
 source components/common.sh
 
-print "Setting up mongodb repo"
+print "Setting up mongodb repo\t\t"
 echo '[mongodb-org-4.2]
 name=MongoDB Repository
 baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
