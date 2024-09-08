@@ -1,7 +1,7 @@
 #!bin/bash
 source components/common.sh
 
-print "Setting up mongodb repo\t\t"
+print "Setting up mongodb repo\t\t\t\t"
 echo '[mongodb-org-4.2]
 name=MongoDB Repository
 baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.2/x86_64/
@@ -10,7 +10,7 @@ enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mongodb.repo
 status_check $?
 
-print "Installing Mongodb"
+print "Installing Mongodb\t\t\t\t"
 yum install -y mongodb-org &>>/tmp/roboshoplog
 status_check $?
 
