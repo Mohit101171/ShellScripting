@@ -13,7 +13,7 @@ print() {
 }
 
 if [ $UID -ne 0 ]; then
-    echo -e "\e[32mYou need to run the script with Sudo rights\e[0m"
+    echo -e "\e[33mYou need to run the script with Sudo rights\e[0m"
     exit 1
 fi
 
