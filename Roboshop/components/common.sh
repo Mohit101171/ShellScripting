@@ -7,3 +7,7 @@ status_check() {
         exit 2
     fi
 } 
+
+print() {
+    echo -n -e "$1 "
+}
