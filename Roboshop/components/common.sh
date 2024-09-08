@@ -11,3 +11,10 @@ status_check() {
 print() {
     echo -n -e "$1 \t"
 }
+
+if [ $UID -ne 0 ]; then
+    echo -e "\e[32mYou need to run the script with Sudo rights\e[0m"
+fi
+
+LOG=/tmp/roboshop.log
+rm -f $LOG
