@@ -23,7 +23,7 @@ systemctl enable mongod
 systemctl restart mongod
 status_check $?
 
-print "Donwloading Mongodb schema\t\t\t\t" 
+print "Donwloading Mongodb schema\t\t\t" 
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" &>>/tmp/roboshoplog
 status_check $?
 
