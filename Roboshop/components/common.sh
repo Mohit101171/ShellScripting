@@ -9,5 +9,5 @@ status_check() {
 } 
 
 print() {
-    echo -n -e "$1 "
+    echo -n -e "$1 \t"
 }
