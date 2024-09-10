@@ -33,5 +33,5 @@ sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/
 status_check $?
 
 print "Setting up and starting Catalogue service"
-systemctl daemon-reload && systemctl start catalogue && systemctl enable catalogue
+systemctl daemon-reload && systemctl restart catalogue && systemctl enable catalogue
 status_check $?
