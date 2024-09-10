@@ -8,7 +8,7 @@ status_check $?
 print "Adding Roboshop user"
 id roboshop &>>$LOG
 if [ $? -eq 0 ]; then
-    echo -n "\n User already exists, skipping."
+    echo -e "\n User already exists, skipping."
 else
     useradd roboshop &>>$LOG
 fi 
