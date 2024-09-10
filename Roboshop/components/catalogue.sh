@@ -29,7 +29,7 @@ npm install --unsafe-perm &>>$LOG
 status_check $?
 
 print "Setting up Mongodb configuration in catalogue service"
-sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal' /home/roboshop/catalogue/systemd.service &>>$LOG && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service &>>$LOG && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 status_check $?
 
 print "Setting up and starting Catalogue service"
