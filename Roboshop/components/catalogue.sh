@@ -20,7 +20,7 @@ status_check $?
 
 cd /home/roboshop
 print "Unzip catalogue components"
-rm -rf catalogue && unzip -o /tmp/catalogue.zip $>>$LOG && mv catalogue-main catalogue
+rm -rf catalogue && unzip -o /tmp/catalogue.zip &>>$LOG && mv catalogue-main catalogue
 status_check $?
 
 cd /home/roboshop/catalogue
