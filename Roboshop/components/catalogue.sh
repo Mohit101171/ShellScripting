@@ -18,14 +18,18 @@ print "Download catalogue components"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>$LOG
 status_check $?
 
+print "Moving to roboshop directory"
+status_check $?
 cd /home/roboshop
 print "Unzip catalogue components"
 rm -rf catalogue && unzip -o /tmp/catalogue.zip &>>$LOG && mv catalogue-main catalogue
 status_check $?
 
+print "Moving to catalogue directory"
+status_check $?
 cd /home/roboshop/catalogue
 print "Download NodeJS dependencies"
-npm install --unsafer-perm &>>$LOG
+npm install --unsafe-perm &>>$LOG
 status_check $?
 
 #sed -i -e 's/
