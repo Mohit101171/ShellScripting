@@ -18,23 +18,20 @@ print "Download catalogue components"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>$LOG
 status_check $?
 
-print "Moving to roboshop directory"
-status_check $?
 cd /home/roboshop
 print "Unzip catalogue components"
 rm -rf catalogue && unzip -o /tmp/catalogue.zip &>>$LOG && mv catalogue-main catalogue
 status_check $?
 
-print "Moving to catalogue directory"
-status_check $?
 cd /home/roboshop/catalogue
 print "Download NodeJS dependencies"
 npm install --unsafe-perm &>>$LOG
 status_check $?
 
-#sed -i -e 's/
+print "Setting up Mongodb configuration in catalogue service"
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal' /home/roboshop/catalogue/systemd.service &>>$LOG && mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+status_check $?
 
-# mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
-# systemctl daemon-reload
-# systemctl start catalogue
-# systemctl enable catalogue
+print "Setting up and starting Catalogue service"
+systemctl daemon-reload && systemctl start catalogue && systemctl enable catalogue
+status_check $?
