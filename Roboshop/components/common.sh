@@ -9,7 +9,8 @@ status_check() {
 } 
 
 print() {
-    echo -n -e "$1 \t"
+    echo -e "\n\t\t\e[36m--------------------- $1 ----------------------\e[0m\n" >>$LOG
+    echo -n -e "$1 \t-"
 }
 
 if [ $UID -ne 0 ]; then
