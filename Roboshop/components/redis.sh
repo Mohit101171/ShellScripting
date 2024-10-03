@@ -2,11 +2,11 @@
 source components/common.sh
 
 print "Install yum-utils and download Redis Repos"
-dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$LOG
+yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$LOG
 status_check $?
 
 print "Setup Redis Repos"
-dnf module enable redis:remi-6.2 -y &>>$LOG
+yum-config-manager --enable remi &>>$LOG
 status_check $?
 
 print "Install Redis"
