@@ -2,11 +2,11 @@
 source components/common.sh
 
 print "Install yum-utils and download Redis Repos"
-yum install epel-release yum-utils http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y &>>$LOG
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$LOG
 status_check $?
 
 print "Setup Redis Repos"
-yum-config-manager --enable remi &>>$LOG
+dnf module enable redis:remi-6.2 -y &>>$LOG
 status_check $?
 
 print "Install Redis"
@@ -19,4 +19,4 @@ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf
 status_check $?
 
 print "Start Redis Service"
-systemctl enable redis &>>$LOG && systemctl start redis $>>$LOG
+systemctl enable redis &>>$LOG && systemctl restart redis $>>$LOG
