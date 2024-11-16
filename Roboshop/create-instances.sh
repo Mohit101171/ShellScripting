@@ -9,14 +9,14 @@ if [ -z "${INSTANCE_NAME}" ]; then
     exit 1
 fi    
 
-aws ec2 describe-instances --filters "Name=tag:Name,Values=${INSTANCE_NAME}" | jq -r .Reservations[].Instances[].State.Name | grep running $>/dev/null
+aws ec2 describe-instances --filters "Name=tag:Name,Values=$INSTANCE_NAME" | jq -r .Reservations[].Instances[].State.Name | grep running $>/dev/null
 
 if [ $? -eq 0 ]; then
     echo "$INSTANCE_NAME is already running"
     exit 0
 fi
 
-aws ec2 describe-instances --filters "Name=tag:Name,Values=${INSTANCE_NAME}" | jq -r .Reservations[].Instances[].State.Name | grep stopped $>/dev/null
+aws ec2 describe-instances --filters "Name=tag:Name,Values=$INSTANCE_NAME" | jq -r .Reservations[].Instances[].State.Name | grep stopped $>/dev/null
 
 if [ $? -eq 0 ]; then
     echo "$INSTANCE_NAME is already provisioned and in stopped state"
