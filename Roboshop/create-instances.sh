@@ -14,6 +14,8 @@ aws ec2 describe-instances --filters "Name=tag:Name,Values=${INSTANCE_NAME}" | j
 if [ $? -eq 0 ]; then
     echo "$INSTANCE_NAME is already running"
     exit 0
+else
+    echo "Initiated provisioning $INSTANCE_NAME"
 fi
 
 aws ec2 describe-instances --filters "Name=tag:Name,Values=${INSTANCE_NAME}" | jq -r .Reservations[].Instances[].State.Name | grep stopped &>/dev/null
@@ -21,8 +23,10 @@ aws ec2 describe-instances --filters "Name=tag:Name,Values=${INSTANCE_NAME}" | j
 if [ $? -eq 0 ]; then
     echo "$INSTANCE_NAME is already provisioned and in stopped state"
     exit 0
+else
+    echo "Initiated provisioning $INSTANCE_NAME"
 fi
 
 IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LTID,Version=$LTV --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" | jq -r .Instances[].PrivateIpAddress)
 
-echo "$IP"
+echo "$INSTANCE_NAME is provisioned"
