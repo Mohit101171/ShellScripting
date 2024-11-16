@@ -4,7 +4,7 @@ LTID='lt-04bee3717931526a8'
 LTV='$Latest'
 INSTANCE_NAME='$1'
 
-if [-z "${INSTANCE_NAME}" ] then
+if [-z "${INSTANCE_NAME}" ]; then
     exit 1
 fi    
 
