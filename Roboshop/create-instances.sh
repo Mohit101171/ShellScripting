@@ -27,4 +27,4 @@ IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LTID,Version=$LTV
 
 echo "$INSTANCE_NAME instance is provisioned"
 
-sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/IP/$IP/" /roboshop/dnstemplate.json >>/tmp/dns.json
+sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/IP/$IP/" /dnstemplate.json >>/tmp/dns.json
