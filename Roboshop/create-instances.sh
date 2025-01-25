@@ -23,11 +23,11 @@ if [ $? -eq 0 ]; then
     exit 0
 fi
 
-IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LTID,Version=$LTV --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" | jq -r .Instances[].PrivateIpAddress)
+IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LTID,Version=$LTV --tag-specifications "ResourceType=spot-instances-request,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME}]" | jq -r .Instances[].PrivateIpAddress | sed -e 's/"//g' )
 
 echo "$INSTANCE_NAME instance is provisioned"
 
 sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/IP/$IP/" dnstemplate.json >>/tmp/dns.json
 
 HID="Z04350933UDPONFLP7ZQU"
-aws route53 change-resource-record-sets --hosted-zone-id $HID --change-batch file:///tmp/dns.json
+aws route53 change-resource-record-sets --hosted-zone-id $HID --change-batch file:///tmp/dns.json | jq
