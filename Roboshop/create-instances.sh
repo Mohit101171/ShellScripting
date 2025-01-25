@@ -34,7 +34,7 @@ aws route53 change-resource-record-sets --hosted-zone-id $HID --change-batch fil
 CID=$(aws route53 change-resource-record-sets --hosted-zone-id Z04350933UDPONFLP7ZQU --change-batch file:///tmp/dns.json | jq -r .ChangeInfo.Id)
 
 sleep 10s
-Status= aws route53 get-change --id $CID | jq -r .ChangeInfo.Status | jq
+Status= aws route53 get-change --id $CID | jq -r .ChangeInfo.Status 
 
 if [ "$Status" = "INSYNC" ]; then
     echo "$INSTANCE_NAME is provisioned and updated in Route53"
