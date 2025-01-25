@@ -1,5 +1,5 @@
 #!bin/bash
-#source components/common.sh
+source components/common.sh
 
 LTID="lt-04bee3717931526a8"
 LTV="$Latest"
@@ -31,4 +31,4 @@ IP=$(aws ec2 run-instances --launch-template LaunchTemplateId=$LTID,Version=$LTV
 sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/IP/$IP/" dnstemplate.json >/tmp/dns.json
 HID="Z04350933UDPONFLP7ZQU"
 aws route53 change-resource-record-sets --hosted-zone-id $HID --change-batch file:///tmp/dns.json | jq
-#status_check $?
+status_check $?
