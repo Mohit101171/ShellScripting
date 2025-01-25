@@ -31,3 +31,14 @@ sed -e "s/INSTANCE_NAME/$INSTANCE_NAME/" -e "s/IP/$IP/" dnstemplate.json >/tmp/d
 HID="Z04350933UDPONFLP7ZQU"
 aws route53 change-resource-record-sets --hosted-zone-id $HID --change-batch file:///tmp/dns.json | jq
 
+CID=$(aws route53 change-resource-record-sets --hosted-zone-id Z04350933UDPONFLP7ZQU --change-batch file:///tmp/dns.json | jq -r .ChangeInfo.Id)
+
+sleep 5
+Status= aws route53 get-change --id $CID | jq -r .ChangeInfo.Status
+
+if [$Status eq "INSYNC"]; then
+    echo "$INSTANCE_NAME is provisioned and updated in Route53"
+fi 
+
+
+
