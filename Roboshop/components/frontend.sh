@@ -20,6 +20,10 @@ status_check $?
 
 print "Update Nginx Roboshop Config\t"
 sed -i -e '/catalogue/ s/localhost/catalogue.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG
+sed -i -e '/user/ s/localhost/user.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG
+sed -i -e '/cart/ s/localhost/cart.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG
+sed -i -e '/shipping/ s/localhost/shipping.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG
+sed -i -e '/payment/ s/localhost/payment.roboshop.internal/' /etc/nginx/default.d/roboshop.conf &>>$LOG
 status_check $?
 
 print "Restarting Nginx service"
