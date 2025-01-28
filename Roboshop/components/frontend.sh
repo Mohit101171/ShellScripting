@@ -3,7 +3,7 @@ source components/common.sh
 
 print "Installing Nginx\t\t"
 yum install nginx -y &>>$LOG
-status_check$?
+status_check $?
 
 print "Downloading HTDOCS for frontend page"
 curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>$LOG
