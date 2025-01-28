@@ -24,5 +24,5 @@ fi
 status_check $?
 
 print "Start Redis Service\t\t\t"
-systemctl enable redis &>>$LOG && systemctl start redis &>>$LOG
+systemctl enable redis &>>$LOG && systemctl restart redis &>>$LOG
 status_check $?
