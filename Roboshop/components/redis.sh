@@ -15,7 +15,12 @@ status_check $?
 
 print "Update the BindIP in redis.conf\t\t"
 
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf
+if [ -f /etc/redis.conf ]; then
+ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf
+fi 
+if [ -f /etc/redis/redis.conf ]; then
+ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
+fi 
 status_check $?
 
 print "Start Redis Service\t\t\t"
