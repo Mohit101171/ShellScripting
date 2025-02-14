@@ -2,7 +2,7 @@
 source components/common.sh
 
 print "Install yum-utils and download Redis Repos"
-yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$LOG
+yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y --skip-broken &>>$LOG
 status_check $?
 
 print "Setup Redis Repos\t\t\t"
