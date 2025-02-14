@@ -22,7 +22,7 @@ LOG=/tmp/roboshop.log
 rm -f $LOG
 
 ADD_APP_USER(){
-    print "Adding Roboshop user"
+    print "\tAdding Roboshop user"
     id roboshop &>>$LOG
     if [ $? -eq 0 ]; then
         echo -e "\n\e[35mUser already exists, skipping.\e[0m"
@@ -38,7 +38,7 @@ SystemD_Setup(){
     status_check $?
 
     print "Setting up and starting ${COMPONENT} service"
-    systemctl daemon-reload && systemctl restart ${COMPONENT} && systemctl enable ${COMPONENT}
+    systemctl daemon-reload &>>$LOG && systemctl restart ${COMPONENT} &>>$LOG && systemctl enable ${COMPONENT} &>>$LOG
     status_check $?
 }
 
@@ -48,13 +48,13 @@ DOOWNLOAD(){
     status_check $?
 
     cd /home/roboshop
-    print "Unzip ${COMPONENT} components"
+    print "\tUnzip ${COMPONENT} components"
     rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG && mv ${COMPONENT}-main ${COMPONENT}
     status_check $?
 }
 
 NodeJS(){
-    print "Installing NodeJS"
+    print "\tInstalling NodeJS"
     yum install nodejs make gcc-c++ -y &>>$LOG
     status_check $?
 
@@ -62,7 +62,7 @@ NodeJS(){
     DOOWNLOAD
     
     cd /home/roboshop/${COMPONENT}
-    print "Download NodeJS dependencies"
+    print "\tDownload NodeJS dependencies"
     npm install --unsafe-perm &>>$LOG
     status_check $?
 
