@@ -53,7 +53,7 @@ DOOWNLOAD(){
     status_check $?
 }
 
-COMPONENT(){
+NodeJS(){
     print "Installing NodeJS"
     yum install nodejs make gcc-c++ -y &>>$LOG
     status_check $?
