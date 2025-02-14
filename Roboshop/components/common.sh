@@ -62,7 +62,7 @@ NodeJS(){
     DOOWNLOAD
     
     cd /home/roboshop/${COMPONENT}
-    print "Download NodeJS dependencie\ts"
+    print "Download NodeJS dependencies\t"
     npm install --unsafe-perm &>>$LOG
     status_check $?
 
