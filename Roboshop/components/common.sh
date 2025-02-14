@@ -22,7 +22,7 @@ LOG=/tmp/roboshop.log
 rm -f $LOG
 
 ADD_APP_USER(){
-    print "\tAdding Roboshop user"
+    print "Adding Roboshop user\t"
     id roboshop &>>$LOG
     if [ $? -eq 0 ]; then
         echo -e "\n\e[35mUser already exists, skipping.\e[0m"
@@ -48,13 +48,13 @@ DOOWNLOAD(){
     status_check $?
 
     cd /home/roboshop
-    print "\tUnzip ${COMPONENT} components"
+    print "Unzip ${COMPONENT} components\t"
     rm -rf ${COMPONENT} && unzip -o /tmp/${COMPONENT}.zip &>>$LOG && mv ${COMPONENT}-main ${COMPONENT}
     status_check $?
 }
 
 NodeJS(){
-    print "\tInstalling NodeJS"
+    print "Installing NodeJS\t"
     yum install nodejs make gcc-c++ -y &>>$LOG
     status_check $?
 
@@ -62,7 +62,7 @@ NodeJS(){
     DOOWNLOAD
     
     cd /home/roboshop/${COMPONENT}
-    print "\tDownload NodeJS dependencies"
+    print "Download NodeJS dependencie\ts"
     npm install --unsafe-perm &>>$LOG
     status_check $?
 
